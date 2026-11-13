@@ -1,0 +1,30 @@
+<% content_for :title, "Agenda | Jornal DM" %>
+    <section class="mx-auto w-[calc(100%-48px)] max-w-[1160px] max-sm:w-[calc(100%-32px)] pt-[75px] pb-[85px]" id="agenda">
+      <div class="mb-[30px] flex items-end justify-between gap-4 max-sm:flex-wrap [&_h1]:mt-[11px] [&_h1]:mb-1.5 [&_h1]:font-display [&_h1]:text-4xl [&_h1]:font-extrabold [&_h1]:tracking-[-1.5px] [&_h1_em]:font-editorial [&_h1_em]:font-normal [&_h1_em]:text-[#5d89a8] [&_p]:m-0 [&_p]:text-xs [&_p]:text-[#8794a1]">
+<div>
+<div class="flex items-center gap-[9px] text-[9px] font-extrabold tracking-[2px] text-[#64829b] [&>span]:h-0.5 [&>span]:w-[22px] [&>span]:bg-[#6c96b2]">
+<span>
+</span> FIQUE ATENTO</div>
+<h1>Agenda <em>DM</em>
+</h1>
+<p>Datas e comunicados importantes da comunidade escolar.</p>
+</div>
+<span class="border border-[#e4ebf0] px-[13px] py-2.5 text-[8px] font-extrabold tracking-[1px] text-[#7e91a1] dark:border-[#355267]">ESPAÇO DA COMUNIDADE</span>
+</div>
+      <div class="flex items-center gap-[18px] border border-[#e5ebf0] px-6 py-5 dark:border-[#294256] dark:bg-[#172f44] [&>div:nth-child(2)]:flex-1 [&>div:nth-child(2)>b]:font-display [&>div:nth-child(2)>b]:text-sm [&>div:nth-child(2)>b]:font-bold [&_p]:mt-1.5 [&_p]:mb-0 [&_p]:text-[11px] [&_p]:text-[#82909d]">
+<div class="relative grid size-[54px] shrink-0 place-items-center rounded-lg bg-[#edf3f7] font-display text-lg font-extrabold text-[#315e7f] [&>span]:text-[15px] [&>b]:absolute [&>b]:top-[-7px] [&>b]:right-[-5px] [&>b]:grid [&>b]:size-[19px] [&>b]:place-items-center [&>b]:rounded-full [&>b]:bg-[#315e7f] [&>b]:text-[13px] [&>b]:text-white">
+<span>DM</span>
+<b>+</b>
+</div>
+<div>
+<b>Tem um evento ou aviso para compartilhar?</b>
+<p>As próximas datas e comunicados serão publicados aqui pela administração do Jornal DM.</p>
+</div>
+<span class="text-[22px] text-[#6f91a8]">↗</span>
+</div>
+    </section>
+<section class="mx-auto w-[calc(100%-48px)] max-w-[1160px] max-sm:w-[calc(100%-32px)] grid grid-cols-3 gap-5 pt-10 pb-[60px] max-[850px]:grid-cols-2 max-sm:grid-cols-1">
+<% @articles.each do |article| %>
+<%= render "articles/card", article: article %>
+<% end %>
+</section>

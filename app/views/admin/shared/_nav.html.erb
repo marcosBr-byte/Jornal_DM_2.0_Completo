@@ -1,0 +1,19 @@
+<header class="sticky top-0 z-30 flex min-h-[68px] items-center justify-between gap-3 bg-[#10283e] px-[30px] py-3 text-white max-sm:px-[15px]">
+  <a href="<%= admin_root_path %>" class="flex shrink-0 items-center gap-3 no-underline" aria-label="Jornal DM — painel administrativo">
+    <%= render "shared/school_logo", variant: "small" %>
+    <div>
+      <b class="block font-display text-xs font-extrabold tracking-[1px]">JORNAL DM</b>
+      <small class="mt-[3px] block text-[7px] tracking-[1.2px] text-[#a5bac9]">PAINEL ADMINISTRATIVO</small>
+    </div>
+  </a>
+  <div class="flex items-center gap-3">
+    <span class="flex items-center gap-2 text-[9px] text-[#c1d0da] max-[850px]:hidden">
+      <i class="inline-block size-[7px] rounded-full bg-[#4b9a7a] shadow-[0_0_0_4px_#4b9a7a1c]"></i> Sessão ativa
+    </span>
+    <button type="button" data-theme-target="toggle" data-action="theme#toggle" aria-label="Alternar tema do painel" class="flex items-center gap-[7px] rounded-[3px] border border-[#ffffff30] bg-[#ffffff12] px-3 py-[9px] text-xs text-[#e6eff5] transition hover:bg-[#ffffff1c] active:scale-[.97]">
+      <span data-theme-target="icon" aria-hidden="true">☾</span>
+      <span data-theme-target="label" class="text-[9px] max-sm:hidden">Modo noturno</span>
+    </button>
+    <%= button_to "Sair ↗", destroy_user_session_path, method: :delete, class: "rounded-[3px] border border-[#ffffff2b] bg-[#ffffff12] px-[13px] py-[9px] text-[9px] text-white hover:bg-[#ffffff25]" %>
+  </div>
+</header>

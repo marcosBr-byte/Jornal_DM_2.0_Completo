@@ -1,0 +1,18 @@
+<aside class="relative border-r border-[#e6edf2] bg-white px-4 pt-[30px] pb-28 dark:border-[#294256] dark:bg-[#142b3e] max-[850px]:border-r-0 max-[850px]:border-b max-[850px]:px-3.5 max-[850px]:py-3" aria-label="Menu administrativo">
+  <div class="px-3 pb-4 text-[8px] font-extrabold tracking-[1.4px] text-[#9aa7b2] dark:text-[#91a8b9] max-[850px]:hidden">MENU PRINCIPAL</div>
+  <nav class="max-[850px]:flex max-[850px]:flex-wrap max-[850px]:gap-1" aria-label="Administração">
+    <% dashboard = controller_path == "admin/dashboard" %>
+    <% [
+      ["▦", "Visão geral", admin_root_path, dashboard],
+      ["＋", "Nova publicação", dashboard ? "#editorPanel" : new_admin_article_path, controller_path == "admin/articles" && action_name.in?(%w[new create edit update])],
+      ["▤", "Publicações", dashboard ? "#managePanel" : admin_articles_path, controller_path == "admin/articles" && action_name == "index"]
+    ].each do |icon, label, path, active| %>
+      <%= link_to path, class: class_names("mb-1 block rounded px-3 py-[13px] text-[11px] text-[#708293] no-underline hover:bg-[#edf3f7] hover:text-[#315e7f] dark:text-[#b4c5d1] dark:hover:bg-[#213e55] dark:hover:text-[#e5f0f6]", "bg-[#edf3f7] font-bold text-[#315e7f]! dark:bg-[#213e55] dark:text-[#e5f0f6]!" => active), aria: { current: active ? "page" : nil } do %>
+        <span aria-hidden="true"><%= icon %></span> &nbsp; <%= label %>
+      <% end %>
+    <% end %>
+  </nav>
+  <div class="absolute bottom-7 left-7 text-[9px] font-extrabold leading-[1.7] tracking-[1.3px] text-[#7890a2] dark:text-[#91a8b9] max-[850px]:hidden">
+    JORNAL DM<br><small class="text-[7px] text-[#a2afb9] dark:text-[#91a8b9]">INFORMAÇÃO QUE APROXIMA</small>
+  </div>
+</aside>

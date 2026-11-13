@@ -1,0 +1,23 @@
+<% content_for :title, "Visão geral | Jornal DM" %>
+<section id="adminOverview" class="mb-[25px] flex scroll-mt-24 items-center justify-between gap-4 max-sm:flex-wrap">
+  <div>
+    <div class="flex items-center gap-[9px] text-[9px] font-extrabold tracking-[2px] text-[#64829b]"><span class="h-0.5 w-[22px] bg-[#6c96b2]"></span> CENTRAL DE CONTROLE</div>
+    <h1 class="mt-[9px] mb-[5px] font-display text-[27px] font-extrabold tracking-[-.7px]"><%= admin_greeting %>, administrador.</h1>
+    <p class="m-0 text-[11px] text-[#8493a0] dark:text-[#9db0be]">Gerencie as notícias e mantenha a comunidade informada.</p>
+  </div>
+  <time datetime="<%= Date.current.iso8601 %>" class="border border-[#e4ebf0] bg-white px-3.5 py-[11px] text-[9px] text-[#8193a1] dark:border-[#2a4559] dark:bg-[#172f43]"><%= admin_date %></time>
+</section>
+<div class="mb-[23px] grid grid-cols-3 gap-3.5 max-sm:gap-2">
+  <% [["PUBLICAÇÕES", @published_count, "Total no portal"], ["DESTAQUES", @featured_count, "Notícias em destaque"], ["CATEGORIAS", @category_count, "Em uso no portal"]].each do |label, count, caption| %>
+    <div class="border border-[#e6edf2] bg-white px-5 py-[17px] dark:border-[#2a4559] dark:bg-[#172f43] max-sm:px-3">
+      <span class="text-[8px] font-extrabold tracking-[1.3px] text-[#8b9aa6] dark:text-[#9db0be]"><%= label %></span>
+      <b class="mt-[7px] mb-px block font-display text-[29px] font-extrabold text-[#234d70] dark:text-[#9fc5df]"><%= count %></b>
+      <small class="text-[9px] text-[#9aa6b0] dark:text-[#9db0be]"><%= caption %></small>
+    </div>
+  <% end %>
+</div>
+<%= render "admin/articles/form", embedded: true %>
+<%= render "admin/articles/list", articles: @articles, published_count: @published_count, draft_count: @draft_count %>
+<% if @articles.size == 20 %>
+  <%= link_to "Ver todas as publicações →", admin_articles_path, class: "mb-5 inline-block text-[10px] font-bold text-[#315e7f] dark:text-[#9fc5df]" %>
+<% end %>

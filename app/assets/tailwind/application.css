@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@source "../../views";
+@source "../../javascript";
+@source "../../helpers";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Manrope", sans-serif;
+  --font-editorial: Georgia, "Times New Roman", serif;
+  --color-dm-ink: #14283d;
+  --color-dm-blue: #244e72;
+  --color-dm-paper: #f7f9fb;
+  --color-dm-pale: #eaf1f6;
+  --color-dm-line: #e2e8ee;
+  --shadow-dm: 0 18px 55px rgb(21 43 64 / .10);
+  --animate-marquee: marquee 32s linear infinite;
+  @keyframes marquee {
+    to { transform: translateX(-48%); }
+  }
+}

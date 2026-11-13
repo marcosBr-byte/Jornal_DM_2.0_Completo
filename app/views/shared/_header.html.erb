@@ -1,0 +1,38 @@
+  <div class="bg-[#10243a] text-[10px] font-bold tracking-[1.5px] text-[#b9c8d5]">
+<div class="mx-auto w-[calc(100%-48px)] max-w-[1160px] max-sm:w-[calc(100%-32px)] flex h-8 items-center justify-between gap-3 max-sm:text-[8px]">
+<span>ESCOLA DOM MARCELO</span>
+<span id="todayLabel">
+</span>
+</div>
+</div>
+  <header class="relative z-5 bg-white dark:bg-[#172f44]">
+    <div class="mx-auto w-[calc(100%-48px)] max-w-[1160px] max-sm:w-[calc(100%-32px)] flex min-h-[92px] items-center justify-between gap-4 py-4 max-sm:flex-wrap">
+      <a class="flex items-center gap-3 text-dm-ink no-underline dark:text-[#e7eff5]" href="/" aria-label="Jornal DM - início">
+        <%= render "shared/school_logo" %>
+        <div class="[&>strong]:block [&>strong]:font-display [&>strong]:text-xl [&>strong]:font-extrabold [&>strong]:tracking-[1px] [&_strong_b]:text-[#477da2] [&>small]:mt-1 [&>small]:block [&>small]:text-[8px] [&>small]:font-bold [&>small]:tracking-[2px] [&>small]:text-[#8292a2]">
+<strong>JORNAL <b>DM</b>
+</strong>
+<small>INFORMAÇÃO QUE APROXIMA</small>
+</div>
+      </a>
+      <div class="flex items-center gap-3.5">
+        <button class="grid size-[39px] shrink-0 place-items-center rounded-full border border-dm-line bg-white text-[19px] text-dm-blue dark:border-[#355267] dark:bg-[#203b50] dark:text-[#e8eff4]" id="themeToggle" type="button" data-theme-target="toggle" data-action="theme#toggle" aria-label="Alternar tema" title="Alternar tema">☾</button>
+        <a class="flex items-center gap-[9px] rounded-md border border-[#e5ebf0] bg-[#f4f7fa] px-4 py-3 text-xs font-bold text-[#25435d] no-underline dark:border-[#355267] dark:bg-[#203b50] dark:text-[#e8eff4]" href="/admin">
+<span class="inline-block size-[7px] shrink-0 rounded-full bg-[#4b9a7a] shadow-[0_0_0_4px_#4b9a7a1c]">
+</span> Área do administrador <span class="text-base">↗</span>
+</a>
+      </div>
+    </div>
+    <nav class="border-y border-[#e8edf1] dark:border-[#294256]">
+<div class="mx-auto w-[calc(100%-48px)] max-w-[1160px] max-sm:w-[calc(100%-32px)] flex h-12 items-center gap-8 overflow-x-auto whitespace-nowrap max-sm:gap-5">
+      <% [["Início", root_path], ["Últimas notícias", articles_path], ["Nossa escola", escola_path], ["Agenda", agenda_path]].each do |label, path| %>
+        <%= link_to label, path, class: class_names("flex h-12 items-center border-b-2 border-transparent text-[11px] font-bold tracking-[.2px] text-[#667789] no-underline hover:border-[#477da2] hover:text-[#234d70] dark:text-[#b4c5d1] dark:hover:text-white", "border-[#477da2]! text-[#234d70]! dark:text-white!" => current_page?(path)), aria: { current: current_page?(path) ? "page" : nil } %>
+      <% end %>
+      <span class="flex-1">
+</span>
+<span class="flex items-center gap-[9px] text-[9px] font-extrabold tracking-[1.5px] text-[#65788a] [&>i]:size-[7px] [&>i]:rounded-full [&>i]:bg-[#4b9a7a]">
+<i>
+</i> GIRO DM</span>
+    </div>
+</nav>
+  </header>

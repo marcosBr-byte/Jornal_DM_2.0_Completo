@@ -1,0 +1,13 @@
+<% content_for :title, "#{@article.title} | Jornal DM" %>
+<article class="mx-auto my-10 max-w-[900px]">
+<%= render "content", article: @article %>
+<div class="px-[45px] py-[30px] max-sm:px-5 [&>h1]:my-[15px] [&>h1]:font-display [&>h1]:text-[32px] [&>h1]:leading-[1.2] [&>h1]:font-extrabold [&>h1]:tracking-[-1px] max-sm:[&>h1]:text-[26px]">
+<%= link_to "↗ Compartilhar no WhatsApp", "https://wa.me/?text=#{ERB::Util.url_encode("#{@article.title} — #{article_url(@article)}")}", class: "inline-block rounded-[3px] border-0 bg-[#e8f5ed] px-[13px] py-2.5 text-[9px] font-extrabold text-[#26764a] no-underline", target: "_blank", rel: "noopener" %>
+<section class="mt-[30px] [&>h3]:mt-2.5 [&>h3]:mb-3.5 [&>h3]:font-display [&>h3]:text-[19px] [&>h3]:font-extrabold [&>h3]:text-[#1b354b] dark:[&>h3]:text-[#e8eff4]">
+<h3>Continue lendo</h3>
+<% @related.each do |article| %>
+<%= link_to article.title, article_path(article), class: "mb-2 flex items-center justify-between gap-3 border border-[#e7edf1] bg-[#f4f7f9] px-3.5 py-3 text-left text-[10px] font-extrabold text-[#29465e] no-underline dark:border-[#355166] dark:bg-[#203b50] dark:text-[#e0eaf0]" %>
+<% end %>
+</section>
+</div>
+</article>

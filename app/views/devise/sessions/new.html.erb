@@ -1,0 +1,27 @@
+<% content_for :title, "Entrar | Jornal DM" %>
+<section class="relative w-full max-w-[450px] bg-white px-[42px] pt-[35px] pb-[27px] shadow-[0_35px_90px_#07182770] dark:bg-[#172f44] max-sm:px-[23px] [&>h2]:mt-[13px] [&>h2]:mb-2 [&>h2]:text-center [&>h2]:font-display [&>h2]:text-[30px] [&>h2]:leading-[1.2] [&>h2]:font-extrabold [&>h2]:tracking-[-1px] [&_h2_em]:font-editorial [&_h2_em]:font-normal [&_h2_em]:text-[#5d89a8]">
+<div class="flex items-center gap-2.5 text-[8px] font-extrabold tracking-[1.6px] text-[#8293a1]">
+<%= render "shared/school_logo" %>
+<span>PAINEL RESTRITO</span>
+</div>
+<div class="flex items-center gap-[9px] text-[9px] font-extrabold tracking-[2px] text-[#64829b] [&>span]:h-0.5 [&>span]:w-[22px] [&>span]:bg-[#6c96b2] justify-center text-[8px]">ACESSO ADMINISTRATIVO</div>
+<h2>Bem-vindo de<br>volta ao <em>Jornal DM.</em>
+</h2>
+<p class="mt-0 mb-[25px] text-center text-[10px] text-[#8996a2]">Entre com suas credenciais para gerenciar as publicações.</p>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= f.label :email, "E-MAIL", class: "mt-[15px] mb-[7px] block text-[8px] font-extrabold tracking-[1.3px] text-[#657b8d] dark:text-[#9db0be]" %>
+<div class="flex h-[46px] items-center gap-2.5 border border-[#e1e8ee] px-3 text-[#7893a8] focus-within:border-[#5d89a8] focus-within:ring-3 focus-within:ring-[#5d89a817] dark:border-[#355267] [&>input]:min-w-0 [&>input]:flex-1 [&>input]:border-0 [&>input]:bg-transparent [&>input]:text-[11px] [&>input]:text-[#19334a] [&>input]:outline-none dark:[&>input]:text-[#e8eff4]">
+<%= f.email_field :email, autocomplete: "username", required: true, autofocus: true %>
+</div>
+<%= f.label :password, "SENHA", class: "mt-[15px] mb-[7px] block text-[8px] font-extrabold tracking-[1.3px] text-[#657b8d] dark:text-[#9db0be]" %>
+<div class="flex h-[46px] items-center gap-2.5 border border-[#e1e8ee] px-3 text-[#7893a8] focus-within:border-[#5d89a8] focus-within:ring-3 focus-within:ring-[#5d89a817] dark:border-[#355267] [&>input]:min-w-0 [&>input]:flex-1 [&>input]:border-0 [&>input]:bg-transparent [&>input]:text-[11px] [&>input]:text-[#19334a] [&>input]:outline-none dark:[&>input]:text-[#e8eff4]">
+<%= f.password_field :password, autocomplete: "current-password", required: true %>
+</div>
+<%= f.submit "Entrar no painel →", class: "mt-4 flex h-12 w-full items-center justify-between border-0 bg-[#234d70] px-[17px] text-[11px] font-bold text-white shadow-[0_9px_18px_#234d7024] disabled:cursor-wait disabled:opacity-60" %>
+<% end %>
+<% User.omniauth_providers.each do |provider| %>
+<%= button_to "Entrar com #{provider.to_s.humanize}", omniauth_authorize_path(:user, provider), data: { turbo: false }, class: "inline-block rounded-[3px] border border-[#e1e8ee] bg-white px-4 py-3 text-[10px] font-bold text-[#748697] no-underline dark:border-[#385368] dark:bg-[#203b50] dark:text-[#d5e2ea] mt-4" %>
+<% end %>
+<%= link_to "Esqueci minha senha", new_user_password_path, class: "text-[9px] font-extrabold tracking-[1px] text-[#315e7f] dark:text-[#9fc5df]" %>
+<div class="mt-[22px] text-center text-[7px] font-extrabold tracking-[1.1px] text-[#9aa7b2]">AMBIENTE RESTRITO À ADMINISTRAÇÃO</div>
+</section>

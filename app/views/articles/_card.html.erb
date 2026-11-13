@@ -1,0 +1,20 @@
+<%= link_to article_path(article), class: "relative block min-w-0 cursor-pointer overflow-hidden border border-[#e8edf1] bg-white text-inherit no-underline transition duration-300 hover:-translate-y-[5px] hover:shadow-dm dark:border-[#294256] dark:bg-[#172f44] [&_h3]:mt-3 [&_h3]:mb-[9px] [&_h3]:font-display [&_h3]:text-lg [&_h3]:leading-[1.35] [&_h3]:font-bold [&_h3]:tracking-[-.4px] [&_p]:mt-0 [&_p]:mb-[17px] [&_p]:text-[11px] [&_p]:leading-[1.7] [&_p]:text-[#7b8997] dark:[&_p]:text-[#a7b7c4]" do %>
+<div class="relative h-[185px] overflow-hidden bg-[linear-gradient(135deg,#e6eef4,#cddce7)] [&>img]:size-full [&>img]:object-cover">
+<%= render "articles/image", article: article %>
+<span class="absolute top-[15px] left-[15px] bg-white px-[9px] py-[7px] text-[8px] font-extrabold tracking-[1px] text-[#315e7f]">
+<%= article.category %>
+</span>
+</div>
+<div class="p-5">
+<div class="flex flex-wrap items-center gap-[9px] text-[9px] text-[#94a0ab]">
+<%= article.published_at&.strftime("%d/%m/%Y") %> • <%= article.author %>
+</div>
+<h3>
+<%= article.title %>
+</h3>
+<p>
+<%= article.summary.presence || truncate(article.body_text, length: 145) %>
+</p>
+<span class="text-[9px] font-extrabold tracking-[1px] text-[#315e7f] dark:text-[#9fc5df]">LER NOTÍCIA →</span>
+</div>
+<% end %>

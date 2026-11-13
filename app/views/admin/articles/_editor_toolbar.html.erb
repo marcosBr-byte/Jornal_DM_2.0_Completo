@@ -1,0 +1,21 @@
+<trix-toolbar id="article_body_toolbar" class="block border-b border-[#e1e8ee] bg-[#f7f9fb] p-2 dark:border-[#355267] dark:bg-[#142b3e]" aria-label="Ferramentas de formatação">
+  <div class="flex flex-wrap items-center gap-1.5">
+    <% [["bold", "N", "Negrito (Ctrl+B)", "b"], ["italic", "I", "Itálico (Ctrl+I)", "i"], ["strike", "S", "Tachado", nil], ["heading1", "Título", "Título de seção", nil], ["bullet", "• Lista", "Lista com marcadores", nil], ["number", "1. Lista", "Lista numerada", nil], ["quote", "❝", "Citação", nil], ["code", "</>", "Bloco de código", nil]].each do |attribute, text, title, key| %>
+      <%= tag.button text, type: "button", title: title, aria: { label: title }, data: { trix_attribute: attribute, trix_key: key }, class: class_names(editor_toolbar_button_classes, "font-bold" => attribute == "bold", "italic" => attribute == "italic", "line-through" => attribute == "strike") %>
+    <% end %>
+    <button type="button" data-trix-attribute="href" data-trix-action="link" data-trix-key="k" title="Inserir ou editar link (Ctrl+K)" aria-label="Inserir ou editar link" class="<%= editor_toolbar_button_classes %>">↗ Link</button>
+    <span class="flex-1"></span>
+    <button type="button" data-trix-action="undo" data-trix-key="z" title="Desfazer (Ctrl+Z)" aria-label="Desfazer" class="<%= editor_toolbar_button_classes %>">↶</button>
+    <button type="button" data-trix-action="redo" data-trix-key="shift+z" title="Refazer (Ctrl+Shift+Z)" aria-label="Refazer" class="<%= editor_toolbar_button_classes %>">↷</button>
+  </div>
+  <div data-trix-dialogs>
+    <div data-trix-dialog="href" data-trix-dialog-attribute="href" class="mt-2 hidden rounded border border-[#dbe4eb] bg-white p-3 data-[trix-active]:block dark:border-[#355267] dark:bg-[#172f43]">
+      <label for="article_link_url" class="mb-2 block text-[10px] font-bold text-[#657b8d] dark:text-[#9db0be]">ENDEREÇO DO LINK</label>
+      <div class="flex flex-wrap gap-2">
+        <input id="article_link_url" type="url" name="href" placeholder="https://..." aria-label="Endereço do link" data-trix-validate-href data-trix-input disabled required class="min-w-0 flex-1 rounded border border-[#e1e8ee] bg-white px-3 py-2 text-xs dark:border-[#355267] dark:bg-[#102638]">
+        <input type="button" data-trix-method="setAttribute" value="Aplicar link" class="<%= editor_toolbar_button_classes %>">
+        <input type="button" data-trix-method="removeAttribute" value="Remover link" class="<%= editor_toolbar_button_classes %>">
+      </div>
+    </div>
+  </div>
+</trix-toolbar>

@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class="my-4 border border-[#a32f39]/30 bg-[#fff5f5] p-4 text-xs text-[#a32f39] dark:bg-[#33212a] dark:text-[#f5aaaa]" role="alert">
+    <p class="mb-2 font-bold">Confira os dados informados:</p>
+    <ul class="list-disc space-y-1 pl-4">
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

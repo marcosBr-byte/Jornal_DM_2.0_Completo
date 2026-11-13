@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth motion-reduce:scroll-auto">
+  <head><%= render "shared/head" %></head>
+  <body data-controller="theme" class="m-0 min-h-screen bg-[#f4f7fa] font-sans text-dm-ink antialiased dark:bg-[#0d1d2b] dark:text-[#e8eff4] [&_button]:cursor-pointer [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-offset-4 [&_a]:focus-visible:outline-[#79a9c7] motion-reduce:[&_*]:transition-none">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:p-3 focus:text-dm-ink">Pular para o conteúdo</a>
+    <%= render "admin/shared/nav" %>
+    <div class="grid min-h-[calc(100vh-68px)] grid-cols-[220px_minmax(0,1fr)] max-[850px]:grid-cols-1">
+      <%= render "admin/shared/sidebar" %>
+      <main id="main-content" class="mx-auto w-full min-w-0 max-w-[1300px] px-[clamp(20px,4vw,55px)] py-[38px] max-[850px]:px-3.5 max-[850px]:py-[25px]">
+        <% flash.each do |type, message| %>
+          <div class="mb-5 border border-dm-line bg-dm-pale p-4 text-xs text-dm-ink dark:border-[#355267] dark:bg-[#203b50] dark:text-[#e8eff4]" role="<%= type == "alert" ? "alert" : "status" %>"><%= message %></div>
+        <% end %>
+        <%= yield %>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+<div class="mt-5 flex flex-wrap justify-end gap-[9px]">
+  <% if local_assigns.fetch(:embedded, false) %>
+    <button type="reset" class="rounded-[3px] border border-[#e1e8ee] bg-white px-4 py-3 text-[10px] font-bold text-[#748697] dark:border-[#385368] dark:bg-[#203b50] dark:text-[#d5e2ea]">Limpar</button>
+  <% else %>
+  <%= link_to "Voltar", admin_articles_path, class: "inline-block rounded-[3px] border border-[#e1e8ee] bg-white px-4 py-3 text-[10px] font-bold text-[#748697] no-underline dark:border-[#385368] dark:bg-[#203b50] dark:text-[#d5e2ea]" %>
+  <% end %>
+  <button class="rounded-[3px] border border-[#e1e8ee] bg-white px-4 py-3 text-[10px] font-bold text-[#748697] dark:border-[#385368] dark:bg-[#203b50] dark:text-[#d5e2ea]" name="intent" value="draft">Salvar rascunho</button>
+  <button class="rounded-[3px] border border-[#e1e8ee] bg-white px-4 py-3 text-[10px] font-bold text-[#748697] dark:border-[#385368] dark:bg-[#203b50] dark:text-[#d5e2ea]" formaction="<%= preview_admin_articles_path %>" formmethod="post" formtarget="_blank" name="_method" value="post" data-turbo="false">Pré-visualizar</button>
+  <button class="min-w-[155px] rounded-[3px] border-0 bg-[#234d70] px-4 py-3 text-[10px] font-bold text-white hover:bg-[#315e7f]" name="intent" value="publish">Publicar notícia →</button>
+</div>

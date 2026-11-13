@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth motion-reduce:scroll-auto">
+<head>
+<%= render "shared/head" %>
+</head>
+<body data-controller="theme" class="m-0 bg-white font-sans text-dm-ink antialiased dark:bg-[#0d1d2b] dark:text-[#e8eff4] [&_*]:box-border [&_button]:cursor-pointer [&_button]:font-[inherit] [&_input]:font-[inherit] [&_select]:font-[inherit] [&_textarea]:font-[inherit] [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-offset-4 [&_a]:focus-visible:outline-[#79a9c7] motion-reduce:[&_*]:animate-none motion-reduce:[&_*]:transition-none">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:p-3 focus:text-dm-ink">Pular para o conteúdo</a>
+<%= render "shared/header" %>
+<% flash.each do |type,message| %>
+<div class="border border-dm-line bg-dm-pale p-4 text-dm-ink dark:border-[#355267] dark:bg-[#203b50] dark:text-[#e8eff4] mx-auto w-[calc(100%-48px)] max-w-[1160px] max-sm:w-[calc(100%-32px)]" role="<%= type == "alert" ? "alert" : "status" %>">
+<%= message %>
+</div>
+<% end %>
+<main id="main-content">
+<%= content_for?(:content) ? yield(:content) : yield %>
+</main>
+<%= render "shared/footer" %>
+</body>
+</html>

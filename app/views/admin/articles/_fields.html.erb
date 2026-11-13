@@ -1,0 +1,33 @@
+<div class="grid grid-cols-2 gap-[15px] max-sm:grid-cols-1">
+  <div class="col-span-2 max-sm:col-span-1">
+    <%= f.label :title, "TÍTULO DA NOTÍCIA *", class: editor_label_classes %>
+    <%= f.text_field :title, required: true, maxlength: 120, placeholder: "Escreva um título claro e atrativo", class: editor_input_classes %>
+  </div>
+  <div>
+    <%= f.label :category, "CATEGORIA", class: editor_label_classes %>
+    <%= f.select :category, Article::CATEGORIES, {}, class: editor_input_classes %>
+  </div>
+  <div>
+    <%= f.label :author, "AUTOR / REDAÇÃO", class: editor_label_classes %>
+    <%= f.text_field :author, required: true, placeholder: "Ex.: Redação Jornal DM", class: editor_input_classes %>
+  </div>
+  <div class="col-span-2 max-sm:col-span-1">
+    <%= f.label :summary, "RESUMO", class: editor_label_classes %>
+    <%= f.text_field :summary, maxlength: 220, placeholder: "Uma frase para apresentar a notícia", class: editor_input_classes %>
+  </div>
+  <div class="col-span-2 max-sm:col-span-1">
+    <%= render "admin/articles/rich_editor", f: f, article: @article %>
+  </div>
+  <div class="col-span-2 max-sm:col-span-1">
+    <%= f.label :cover, "IMAGEM DE CAPA", class: editor_label_classes %>
+    <%= f.file_field :cover, accept: "image/jpeg,image/png,image/webp", class: class_names(editor_input_classes, "file:mr-3 file:rounded file:border-0 file:bg-dm-pale file:px-3 file:py-1 file:text-dm-blue") %>
+    <small class="mt-1.5 block text-[8px] text-[#9aa6b0]">JPEG, PNG ou WebP de até 1,5 MB.</small>
+    <% if @article.cover.attached? && @article.cover.persisted? %>
+      <%= image_tag @article.cover, alt: "Capa atual", class: "mt-2 max-h-[100px] max-w-40 border border-[#e3eaf0] object-cover dark:border-[#355267]" %>
+    <% end %>
+  </div>
+  <label class="col-span-2 flex items-center gap-[9px] text-[10px] text-[#63798b] dark:text-[#b4c5d1] max-sm:col-span-1">
+    <%= f.check_box :featured, class: "accent-[#315e7f]" %>
+    <span>Marcar como notícia em destaque</span>
+  </label>
+</div>

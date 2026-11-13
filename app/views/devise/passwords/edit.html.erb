@@ -1,0 +1,17 @@
+<% content_for :title, "Nova senha | Jornal DM" %>
+<section class="relative w-full max-w-[450px] bg-white px-[42px] pt-[35px] pb-[27px] shadow-[0_35px_90px_#07182770] dark:bg-[#172f44] max-sm:px-[23px] [&>h2]:mt-[13px] [&>h2]:mb-2 [&>h2]:text-center [&>h2]:font-display [&>h2]:text-[30px] [&>h2]:leading-[1.2] [&>h2]:font-extrabold [&>h2]:tracking-[-1px] [&_h2_em]:font-editorial [&_h2_em]:font-normal [&_h2_em]:text-[#5d89a8]">
+<h2>Nova senha</h2>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<%= render "devise/shared/error_messages", resource: resource %>
+<%= f.hidden_field :reset_password_token %>
+<%= f.label :password, "SENHA (MÍNIMO 6 CARACTERES)", class: "mt-[15px] mb-[7px] block text-[8px] font-extrabold tracking-[1.3px] text-[#657b8d] dark:text-[#9db0be]" %>
+<div class="flex h-[46px] items-center gap-2.5 border border-[#e1e8ee] px-3 text-[#7893a8] focus-within:border-[#5d89a8] focus-within:ring-3 focus-within:ring-[#5d89a817] dark:border-[#355267] [&>input]:min-w-0 [&>input]:flex-1 [&>input]:border-0 [&>input]:bg-transparent [&>input]:text-[11px] [&>input]:text-[#19334a] [&>input]:outline-none dark:[&>input]:text-[#e8eff4]">
+<%= f.password_field :password, autocomplete: "new-password", minlength: 6, required: true %>
+</div>
+<%= f.label :password_confirmation, "CONFIRME A SENHA", class: "mt-[15px] mb-[7px] block text-[8px] font-extrabold tracking-[1.3px] text-[#657b8d] dark:text-[#9db0be]" %>
+<div class="flex h-[46px] items-center gap-2.5 border border-[#e1e8ee] px-3 text-[#7893a8] focus-within:border-[#5d89a8] focus-within:ring-3 focus-within:ring-[#5d89a817] dark:border-[#355267] [&>input]:min-w-0 [&>input]:flex-1 [&>input]:border-0 [&>input]:bg-transparent [&>input]:text-[11px] [&>input]:text-[#19334a] [&>input]:outline-none dark:[&>input]:text-[#e8eff4]">
+<%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+</div>
+<%= f.submit "Alterar senha", class: "mt-4 flex h-12 w-full items-center justify-between border-0 bg-[#234d70] px-[17px] text-[11px] font-bold text-white shadow-[0_9px_18px_#234d7024] disabled:cursor-wait disabled:opacity-60" %>
+<% end %>
+</section>

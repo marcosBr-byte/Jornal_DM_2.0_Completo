@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+set -eu
+cd "$(dirname "$0")/.."
+
+# Apply outstanding migrations before Puma and the CSS watcher start.
+bin/rails db:prepare
+
+exec bundle exec foreman start -f Procfile.dev "$@"

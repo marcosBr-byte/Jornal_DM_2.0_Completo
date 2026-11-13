@@ -1,0 +1,77 @@
+<% content_for :title, "Início | Jornal DM" %>
+<section class="border-b border-[#e7edf2] bg-[#f2f6f9] dark:border-[#294256] dark:bg-[#172f44]">
+<div class="mx-auto w-[calc(100%-48px)] max-w-[1160px] max-sm:w-[calc(100%-32px)] flex h-[42px] items-center gap-[18px] overflow-hidden">
+<span class="shrink-0 bg-dm-blue px-[11px] py-[7px] text-[9px] font-extrabold tracking-[1.4px] text-white">GIRO DM</span>
+<div class="flex-1 overflow-hidden whitespace-nowrap">
+<div class="flex w-max animate-marquee gap-[65px] [&>span]:text-[11px] [&>span]:text-[#687b8c] dark:[&>span]:text-[#a7b7c4] [&>span]:before:mr-3 [&>span]:before:text-[#477da2] [&>span]:before:content-['✦']">
+<span>As principais notícias da nossa comunidade escolar em um só lugar.</span>
+<span>Informação que aproxima.</span>
+</div>
+</div>
+</div>
+</section>
+<% if @headline %>
+<section class="group my-[18px] mt-7 grid min-h-[285px] grid-cols-[1.05fr_.95fr] overflow-hidden bg-[linear-gradient(120deg,#102b43,#244e72)] text-white shadow-[0_18px_42px_#0f2b4124] dark:bg-[linear-gradient(120deg,#081a29,#173c59)] max-[760px]:grid-cols-1 mx-auto w-[calc(100%-48px)] max-w-[1160px] max-sm:w-[calc(100%-32px)]">
+<div class="flex flex-col items-start justify-center px-10 py-[34px] max-sm:px-[23px] [&>h2]:my-2.5 [&>h2]:max-w-[590px] [&>h2]:font-display [&>h2]:text-[clamp(23px,3vw,35px)] [&>h2]:leading-[1.14] [&>h2]:font-extrabold [&>h2]:tracking-[-1px] [&>p]:mt-0 [&>p]:mb-5 [&>p]:max-w-[560px] [&>p]:text-xs [&>p]:leading-[1.75] [&>p]:text-[#c1d0dc]">
+<div class="flex items-center gap-[9px] text-[9px] font-extrabold tracking-[1.8px] text-[#b8d1e2]">MANCHETE EM DESTAQUE</div>
+<div class="mt-5 text-[10px] text-[#a9bfd0]">
+<%= @headline.category %>
+</div>
+<h2>
+<%= @headline.title %>
+</h2>
+<p>
+<%= @headline.summary %>
+</p>
+<%= link_to "Ler reportagem →", article_path(@headline), class: "inline-flex items-center gap-[22px] border border-[#ffffff55] bg-[#ffffff12] px-3.5 py-[11px] text-[10px] font-extrabold text-white no-underline transition hover:-translate-y-0.5 hover:bg-[#ffffff25]" %>
+</div>
+<div class="relative min-h-[285px] overflow-hidden bg-[#183c59] max-[760px]:row-start-1 max-[760px]:min-h-[190px] [&>img]:absolute [&>img]:inset-0 [&>img]:size-full [&>img]:object-cover [&>img]:transition-transform [&>img]:duration-700 group-hover:[&>img]:scale-[1.045]">
+<%= render "articles/image", article: @headline %>
+</div>
+</section>
+<% end %>
+    <section class="grid min-h-[510px] grid-cols-[1.05fr_.95fr] items-center pt-[50px] pb-[62px] max-[850px]:grid-cols-1 mx-auto w-[calc(100%-48px)] max-w-[1160px] max-sm:w-[calc(100%-32px)]">
+      <div class="[&>h1]:mt-[22px] [&>h1]:mb-[18px] [&>h1]:font-display [&>h1]:text-[clamp(42px,5vw,65px)] [&>h1]:leading-[1.08] [&>h1]:font-extrabold [&>h1]:tracking-[-3px] [&>h1]:text-[#142b40] dark:[&>h1]:text-[#e7eff5] [&_h1_em]:font-editorial [&_h1_em]:font-normal [&_h1_em]:text-[#5d89a8] [&>p]:mb-[27px] [&>p]:max-w-[440px] [&>p]:text-[15px] [&>p]:leading-[1.8] [&>p]:text-[#788797] dark:[&>p]:text-[#a7b7c4]">
+        <div class="flex items-center gap-[9px] text-[9px] font-extrabold tracking-[2px] text-[#64829b] [&>span]:h-0.5 [&>span]:w-[22px] [&>span]:bg-[#6c96b2]">
+<span>
+</span> JORNALISMO ESCOLAR</div>
+        <h1>O que acontece<br>na nossa escola <em>importa.</em>
+</h1>
+        <p>Notícias, histórias e acontecimentos que movimentam a comunidade da Escola Dom Marcelo.</p>
+        <a class="inline-flex items-center gap-8 rounded-[3px] bg-[#234d70] px-[19px] py-[15px] text-[11px] font-bold text-white no-underline shadow-[0_9px_20px_#234d7025] hover:bg-[#315e7f] [&>span]:text-lg" href="/noticias">Explorar notícias <span>→</span>
+</a>
+        <div class="mt-[55px] flex items-center gap-3 text-[8px] font-bold tracking-[1.5px] text-[#99a5b1]">
+<span class="h-px w-[34px] bg-[#b8c8d4]">
+</span>
+<span>INFORMAÇÃO • EDUCAÇÃO • COMUNIDADE</span>
+</div>
+      </div>
+      <div class="relative grid h-[400px] place-items-center overflow-hidden max-[850px]:mt-10 max-sm:h-[360px]">
+        <div class="absolute size-[400px] rounded-full border border-[#dce7ee] dark:border-[#294256]">
+</div>
+<div class="absolute size-[400px] rounded-full border border-[#dce7ee] dark:border-[#294256] size-[455px] border-dashed opacity-65">
+</div>
+        <div class="relative z-1 h-[350px] w-[310px] overflow-hidden rounded bg-[linear-gradient(145deg,#173651,#315e7f_60%,#477c9b)] p-[25px] text-white shadow-[0_28px_60px_#183a572b] after:absolute after:top-[60px] after:right-[-120px] after:size-[270px] after:rounded-full after:border after:border-[#ffffff25] after:shadow-[0_0_0_25px_#ffffff09,0_0_0_55px_#ffffff07] after:content-[''] max-sm:w-[270px]">
+          <div class="flex items-center justify-between">
+<span class="text-[9px] font-extrabold tracking-[2px]">JORNAL DM</span>
+<span class="text-[7px] tracking-[1px] text-[#c1d5e2] [&>i]:mr-[5px] [&>i]:inline-block [&>i]:size-[5px] [&>i]:rounded-full [&>i]:bg-[#8fd2b4]">
+<i>
+</i> CONECTADO</span>
+</div>
+          <%= render "shared/school_logo", variant: "hero", logo_class: "absolute top-[65px] left-1/2 -translate-x-1/2 shadow-[0_10px_35px_#0b223a55]" %>
+          <div class="absolute bottom-[25px] left-[25px] [&>strong]:block [&>strong]:font-display [&>strong]:text-2xl [&>strong]:leading-[1.15] [&>strong]:font-bold [&>span]:mt-3 [&>span]:block [&>span]:text-[7px] [&>span]:tracking-[2px] [&>span]:text-[#b7cbd9]">
+<strong>Uma escola.<br>Mil histórias.</strong>
+<span>DESDE AQUI, PARA TODOS.</span>
+</div>
+        </div>
+        <div class="absolute right-0 bottom-[37px] z-2 flex items-center gap-3 border border-[#edf1f4] bg-white px-[18px] py-[15px] shadow-dm dark:border-[#294256] dark:bg-[#172f44] [&_b]:block [&_b]:text-[10px] [&_small]:mt-1 [&_small]:block [&_small]:text-[9px] [&_small]:text-[#8b98a5]">
+<span class="grid size-[35px] place-items-center rounded-full bg-[#edf4f8] text-lg text-[#477da2]">✦</span>
+<div>
+<b>Voz da comunidade</b>
+<small>Histórias que merecem ser contadas.</small>
+</div>
+</div>
+      </div>
+    </section>
+
+<%= render "articles/list" %>

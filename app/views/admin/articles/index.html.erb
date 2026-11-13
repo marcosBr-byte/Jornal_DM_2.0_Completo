@@ -1,0 +1,6 @@
+<% content_for :title, "Publicações | Jornal DM" %>
+<%= render "list", articles: @articles, published_count: @published_count, draft_count: @draft_count %>
+<nav class="my-6 flex gap-6 text-xs" aria-label="Paginação">
+  <% if @page > 1 %><%= link_to "← Anteriores", admin_articles_path(page: @page - 1) %><% end %>
+  <% if @articles.size == 20 %><%= link_to "Próximas →", admin_articles_path(page: @page + 1) %><% end %>
+</nav>

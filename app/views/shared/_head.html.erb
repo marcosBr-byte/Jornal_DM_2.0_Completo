@@ -1,0 +1,14 @@
+<title>
+<%= content_for(:title) || "Jornal DM | Informação que aproxima" %>
+</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10243a">
+<meta name="description" content="Jornal DM — informação, educação e comunidade.">
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<%= favicon_link_tag "logo_escola.jpeg", type: "image/jpeg" %>
+<%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+<%= javascript_importmap_tags %>

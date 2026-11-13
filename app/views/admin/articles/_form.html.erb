@@ -1,0 +1,19 @@
+<% embedded = local_assigns.fetch(:embedded, false) %>
+<section id="editorPanel" class="mb-5 scroll-mt-24 border border-[#e5ebf0] bg-white px-[27px] py-[25px] dark:border-[#2a4559] dark:bg-[#172f43] max-sm:px-4">
+  <div class="mb-[23px] flex items-center justify-between gap-4 max-sm:flex-wrap">
+    <div>
+      <div class="flex items-center gap-[9px] text-[9px] font-extrabold tracking-[2px] text-[#64829b]"><span class="h-0.5 w-[22px] bg-[#6c96b2]"></span> REDAÇÃO</div>
+      <%= content_tag(embedded ? :h2 : :h1, @article.new_record? ? "Criar publicação" : "Editar publicação", class: "mt-[7px] mb-1 font-display text-xl font-extrabold") %>
+      <p class="m-0 text-[10px] text-[#8a98a4] dark:text-[#9db0be]">Prepare sua notícia, salve como rascunho ou confira a prévia antes de publicar.</p>
+    </div>
+    <span class="bg-[#edf3f7] px-[11px] py-[9px] text-[8px] font-extrabold tracking-[1px] text-[#64829b] dark:bg-[#213e55] dark:text-[#b9d0df]"><%= @article.new_record? ? "NOVA NOTÍCIA" : "EDIÇÃO" %></span>
+  </div>
+  <% if @article.errors.any? %>
+    <div class="mb-4 border border-[#a32f39]/30 p-4 text-xs text-[#a32f39] dark:text-[#f5aaaa]" role="alert"><%= @article.errors.full_messages.join(". ") %></div>
+  <% end %>
+  <%= form_with model: [:admin, @article] do |f| %>
+    <%= f.hidden_field :lock_version %>
+    <%= render "admin/articles/fields", f: f %>
+    <%= render "admin/articles/actions", embedded: embedded %>
+  <% end %>
+</section>

@@ -1,0 +1,24 @@
+<% if article.cover.attached? %>
+<div class="h-[290px] bg-dm-pale max-sm:h-[200px] [&>img]:size-full [&>img]:object-cover">
+<%= image_tag article.cover, alt: article.title %>
+</div>
+<% end %>
+<div class="px-[45px] py-[30px] max-sm:px-5 [&>h1]:my-[15px] [&>h1]:font-display [&>h1]:text-[32px] [&>h1]:leading-[1.2] [&>h1]:font-extrabold [&>h1]:tracking-[-1px] max-sm:[&>h1]:text-[26px]">
+<div class="flex items-center gap-[9px] text-[9px] font-extrabold tracking-[2px] text-[#64829b] [&>span]:h-0.5 [&>span]:w-[22px] [&>span]:bg-[#6c96b2]">
+<span>
+</span>
+<%= article.category %>
+</div>
+<div class="flex flex-wrap items-center gap-[9px] text-[9px] text-[#94a0ab]">
+<%= article.author %> • <%= article.published_at&.strftime("%d/%m/%Y") %>
+</div>
+<h1>
+<%= article.title %>
+</h1>
+<p class="text-sm leading-[1.7] text-[#708293] dark:text-[#aabac6]">
+<%= article.summary %>
+</p>
+<div class="<%= class_names(article_prose_classes, "mt-[25px]") %>">
+<%= article_body_markup(article) %>
+</div>
+</div>

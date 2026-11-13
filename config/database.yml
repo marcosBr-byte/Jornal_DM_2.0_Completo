@@ -1,0 +1,34 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+  host: <%= ENV.fetch("PGHOST", "localhost") %>
+  port: <%= ENV.fetch("PGPORT", 5432) %>
+  username: <%= ENV.fetch("PGUSER", "postgres") %>
+  password: <%= ENV["PGPASSWORD"] %>
+development:
+  <<: *default
+  database: jornal_dm_development
+test:
+  <<: *default
+  database: jornal_dm_test
+production:
+  primary: &primary
+    <<: *default
+    database: jornal_dm_production
+    url: <%= ENV["DATABASE_URL"] %>
+  cache:
+    <<: *primary
+    database: jornal_dm_production_cache
+    url: <%= ENV["CACHE_DATABASE_URL"] %>
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary
+    database: jornal_dm_production_queue
+    url: <%= ENV["QUEUE_DATABASE_URL"] %>
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary
+    database: jornal_dm_production_cable
+    url: <%= ENV["CABLE_DATABASE_URL"] %>
+    migrations_paths: db/cable_migrate

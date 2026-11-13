@@ -1,0 +1,40 @@
+<section class="mx-auto w-[calc(100%-48px)] max-w-[1160px] max-sm:w-[calc(100%-32px)] pt-[65px] pb-[90px]">
+<div class="mb-[30px] flex items-end justify-between gap-4 max-sm:flex-wrap [&_h2]:mt-[11px] [&_h2]:mb-1.5 [&_h2]:font-display [&_h2]:text-4xl [&_h2]:font-extrabold [&_h2]:tracking-[-1.5px] [&_h2_em]:font-editorial [&_h2_em]:font-normal [&_h2_em]:text-[#5d89a8] [&_p]:m-0 [&_p]:text-xs [&_p]:text-[#8794a1]">
+<div>
+<div class="flex items-center gap-[9px] text-[9px] font-extrabold tracking-[2px] text-[#64829b] [&>span]:h-0.5 [&>span]:w-[22px] [&>span]:bg-[#6c96b2]">
+<span>
+</span> ACOMPANHE</div>
+<%= content_tag(local_assigns[:page_heading] ? :h1 : :h2, class: "mt-[11px] mb-1.5 font-display text-4xl font-extrabold tracking-[-1.5px]") do %>Últimas <em class="font-editorial font-normal text-[#5d89a8]">notícias</em><% end %>
+<p>Fique por dentro do que está acontecendo.</p>
+</div>
+</div>
+<%= form_with url: articles_path, method: :get, class: "mb-[25px] flex flex-wrap items-center justify-between gap-[18px]" do |f| %>
+<label class="flex h-[42px] w-[245px] max-w-full items-center gap-2 rounded border border-[#e5ebf0] px-3 text-[#7790a3] dark:border-[#355267] [&>span]:text-[22px] [&>input]:w-full [&>input]:border-0 [&>input]:bg-transparent [&>input]:text-[11px] [&>input]:text-dm-ink [&>input]:outline-none dark:[&>input]:text-[#e8eff4]">
+<span>⌕</span>
+<%= f.search_field :q, value: params[:q], placeholder: "Buscar notícias...", aria: { label: "Buscar notícias" } %>
+</label>
+<%= f.select :category, options_for_select(["Todas"] + Article::CATEGORIES, params[:category]), {}, aria: { label: "Filtrar por categoria" }, class: "rounded-[3px] border border-[#e4eaf0] bg-white px-[13px] py-[9px] text-[10px] font-bold text-[#778696] dark:border-[#355267] dark:bg-[#203b50] dark:text-[#d5e2ea]" %>
+<%= f.submit "Buscar", class: "inline-flex items-center gap-8 rounded-[3px] bg-[#234d70] px-[19px] py-[15px] text-[11px] font-bold text-white no-underline shadow-[0_9px_20px_#234d7025] hover:bg-[#315e7f] [&>span]:text-lg" %>
+<% end %>
+<div class="grid grid-cols-3 gap-5 max-[850px]:grid-cols-2 max-sm:grid-cols-1">
+<% if @articles.empty? %>
+<div class="col-span-full border border-dashed border-[#dbe4eb] bg-dm-paper px-5 py-12 text-center dark:border-[#294256] dark:bg-[#172f44] [&>h3]:mt-0 [&>h3]:mb-[7px] [&>h3]:font-display [&>h3]:text-[17px] [&>h3]:font-bold [&>p]:m-0 [&>p]:text-[11px] [&>p]:text-[#8794a1]">
+<div class="mx-auto mb-3.5 grid size-[54px] place-items-center rounded-[15px] bg-dm-pale font-display text-lg font-extrabold text-[#315e7f]">DM</div>
+<h3>Nenhuma notícia encontrada.</h3>
+<p>As notícias publicadas pela equipe aparecerão nesta área.</p>
+</div>
+<% else %>
+<%= render partial: "articles/card", collection: @articles, as: :article %>
+<% end %>
+</div>
+<% if @page %>
+<nav class="my-6 flex gap-6" aria-label="Paginação">
+<% if @page > 1 %>
+<%= link_to "← Anteriores", articles_path(q: params[:q], category: params[:category], page: @page - 1) %>
+<% end %>
+<% if @has_next %>
+<%= link_to "Próximas →", articles_path(q: params[:q], category: params[:category], page: @page + 1) %>
+<% end %>
+</nav>
+<% end %>
+</section>

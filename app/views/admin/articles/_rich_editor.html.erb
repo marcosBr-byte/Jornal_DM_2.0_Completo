@@ -1,0 +1,12 @@
+<%= f.label :body_editor, "CONTEÚDO *", id: "article_body_label", class: editor_label_classes %>
+<%= f.hidden_field :body_format, value: "html" %>
+<%= f.hidden_field :body, value: article_editor_value(article) %>
+<div data-controller="rich-editor" data-action="trix-change->rich-editor#changed trix-file-accept->rich-editor#rejectFile" class="overflow-hidden rounded-[2px] border border-[#e1e8ee] bg-white focus-within:border-[#7196b0] focus-within:ring-3 focus-within:ring-[#7196b015] dark:border-[#355267] dark:bg-[#102638]">
+  <%= render "admin/articles/editor_toolbar" %>
+  <%= tag.trix_editor id: "article_body_editor", input: "article_body", toolbar: "article_body_toolbar", required: true, "aria-labelledby": "article_body_label", "aria-describedby": "article_body_help", placeholder: "Desenvolva a notícia com as informações principais...", data: { rich_editor_target: "editor" }, class: class_names(article_prose_classes, "block min-h-[230px] px-3 py-3 outline-none [&:empty]:before:text-[#8a98a4] [&:empty]:before:content-[attr(placeholder)]") %>
+  <div class="flex items-center justify-between gap-3 border-t border-[#e1e8ee] bg-[#f7f9fb] px-3 py-2 text-[9px] text-[#82909d] dark:border-[#355267] dark:bg-[#142b3e]">
+    <span id="article_body_help">Formate seu texto pela barra de ferramentas.</span>
+    <span data-rich-editor-target="count" aria-live="off">0 palavras</span>
+  </div>
+</div>
+<noscript><p class="mt-2 text-xs text-[#a32f39]">Ative o JavaScript para usar o editor de texto.</p></noscript>

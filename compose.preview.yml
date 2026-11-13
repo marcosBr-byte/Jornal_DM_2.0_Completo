@@ -1,0 +1,20 @@
+name: jornal-dm-preview
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: jornal_dm_development
+      POSTGRES_USER: ${PGUSER:?Configure PGUSER no .env}
+      POSTGRES_PASSWORD: ${PGPASSWORD:?Configure PGPASSWORD no .env}
+    ports:
+      - "127.0.0.1:${PGPORT:-55433}:5432"
+    volumes:
+      - preview_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d jornal_dm_development"]
+      interval: 2s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+volumes:
+  preview_postgres:

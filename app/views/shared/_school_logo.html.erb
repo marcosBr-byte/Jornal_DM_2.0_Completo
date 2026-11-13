@@ -1,0 +1,10 @@
+<% logo_sizes = {
+  "small" => "size-[34px] p-0.5",
+  "default" => "size-12 p-1",
+  "emblem" => "size-[82px] p-1.5",
+  "hero" => "size-[170px] p-2"
+} %>
+<%= image_tag "logo_escola.jpeg",
+  alt: "Brasão da Escola Dom Marcelo Pinto de Carvalho",
+  width: 447, height: 447,
+  class: class_names("shrink-0 rounded-lg bg-[#f7f7f7] object-contain", logo_sizes.fetch(local_assigns.fetch(:variant, "default")), local_assigns[:logo_class]) %>
