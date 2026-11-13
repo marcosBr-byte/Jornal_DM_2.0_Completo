@@ -1,0 +1,47 @@
+services:
+  - type: web
+    name: jornal-dm
+    runtime: docker
+    plan: free
+    region: virginia
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: ./bin/render-start
+    healthCheckPath: /up
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: SECRET_KEY_BASE
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: SINGLE_DATABASE
+        value: "true"
+      - key: ACTIVE_STORAGE_SERVICE
+        value: database
+      - key: ADMIN_EMAIL
+        value: admin@jornaldm
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: RAILS_MAX_THREADS
+        value: "3"
+      - key: WEB_CONCURRENCY
+        value: "0"
+      - key: SOLID_QUEUE_IN_PUMA
+        value: "1"
+      - key: SOLID_QUEUE_MODE
+        value: async
+      - key: JOB_THREADS
+        value: "1"
+      - key: JOB_POLL_INTERVAL
+        value: "5"
+      - key: JOB_DISPATCH_INTERVAL
+        value: "10"
+      - key: CABLE_POLL_INTERVAL
+        value: "1"
+      - key: CACHE_MAX_SIZE_MB
+        value: "32"
+      - key: RAILS_LOG_TO_STDOUT
+        value: "1"

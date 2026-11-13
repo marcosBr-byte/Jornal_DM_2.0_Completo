@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+for name in DATABASE_URL SECRET_KEY_BASE; do
+  if [[ -z "${!name:-}" ]]; then
+    echo "Configure ${name} no painel do Render antes de iniciar." >&2
+    exit 1
+  fi
+done
+
+# Free services have no paid pre-deploy hook: migrate before Puma starts.
+./bin/rails db:prepare
+./bin/rails db:seed
+exec ./bin/rails server -b 0.0.0.0 -p "${PORT:-10000}"

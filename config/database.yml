@@ -17,6 +17,7 @@ production:
     <<: *default
     database: jornal_dm_production
     url: <%= ENV["DATABASE_URL"] %>
+<% unless ENV["SINGLE_DATABASE"] == "true" %>
   cache:
     <<: *primary
     database: jornal_dm_production_cache
@@ -32,3 +33,4 @@ production:
     database: jornal_dm_production_cable
     url: <%= ENV["CABLE_DATABASE_URL"] %>
     migrations_paths: db/cable_migrate
+<% end %>

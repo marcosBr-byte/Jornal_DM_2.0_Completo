@@ -2,6 +2,8 @@
 
 [← Voltar ao README](../README.md)
 
+Para a hospedagem gratuita preparada neste projeto, siga o [guia Render + Neon](DEPLOY_RENDER.md).
+
 Este guia complementa a apresentação do Jornal DM com os detalhes de ambiente e serviços opcionais.
 
 ## Credenciais e ambiente local

@@ -51,14 +51,15 @@ Rails.application.configure do
 
   # Replace the default in-process and non-durable queuing backend for Active Job.
   config.active_job.queue_adapter = :solid_queue
-  config.solid_queue.connects_to = { database: { writing: :queue } }
+  config.solid_queue.connects_to = { database: { writing: ENV["SINGLE_DATABASE"] == "true" ? :primary : :queue } }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: ENV.fetch("APP_HOST"), protocol: "https" }
+  app_host = ENV["APP_HOST"].presence || ENV.fetch("RENDER_EXTERNAL_HOSTNAME")
+  config.action_mailer.default_url_options = { host: app_host, protocol: "https" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: ENV.fetch("SMTP_ADDRESS", "localhost"),
@@ -66,7 +67,9 @@ Rails.application.configure do
     user_name: ENV["SMTP_USERNAME"], password: ENV["SMTP_PASSWORD"],
     authentication: :plain, enable_starttls_auto: true
   }
-  config.hosts = [ ENV.fetch("APP_HOST") ]
+  config.hosts = [ app_host, ENV["RENDER_EXTERNAL_HOSTNAME"] ].compact.uniq
+  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
   # config.action_mailer.smtp_settings = {

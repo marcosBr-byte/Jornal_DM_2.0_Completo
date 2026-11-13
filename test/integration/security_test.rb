@@ -63,6 +63,27 @@ class SecurityTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "PostgreSQL covers remain protected without a disk or public storage URL" do
+    image = Base64.decode64("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a8F0AAAAASUVORK5CYII=").b
+    @blob = ActiveStorage::Blob.create_and_upload!(io: StringIO.new(image), filename: "persistent.png", content_type: "image/png", service_name: "database")
+    @article.cover.attach(@blob)
+    assert StoredFile.exists?(key: @blob.key)
+    get cover_article_path(@article)
+    assert_response :not_found
+    sign_in @admin
+    get cover_article_path(@article)
+    assert_response :success
+    assert_equal image, response.body.b
+    sign_out @admin
+    @article.update!(status: :published)
+    get cover_article_path(@article)
+    assert_response :success
+    assert_equal image, response.body.b
+    @article.cover.purge
+    assert_not StoredFile.exists?(key: @blob.key)
+    @blob = nil
+  end
+
   test "missing cover returns not found" do
     @article.update!(status: :published)
     get cover_article_path(@article)

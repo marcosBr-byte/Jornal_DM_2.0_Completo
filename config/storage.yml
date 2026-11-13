@@ -30,3 +30,7 @@ amazon:
   service: S3
   region: <%= ENV.fetch("AWS_REGION", "us-east-1") %>
   bucket: <%= ENV.fetch("S3_BUCKET", "jornal-dm") %>
+
+# Persistent covers on a single external PostgreSQL (Render + Neon).
+database:
+  service: Database
