@@ -1,5 +1,5 @@
 <% if article.cover.attached? %>
-<%= image_tag article.cover, alt: article.title, loading: "lazy" %>
+<%= image_tag cover_article_path(article), alt: article.title, loading: "lazy" %>
 <% else %>
 <div class="grid h-full place-items-center font-display text-[45px] font-extrabold text-[#a4b9c9]">DM</div>
 <% end %>

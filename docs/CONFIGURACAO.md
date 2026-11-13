@@ -108,6 +108,10 @@ A recuperação de senha em produção depende de um remetente e de um servidor 
 
 ## Produção
 
+A produção exige senhas de pelo menos **12 caracteres**, inclusive ao autenticar uma conta copiada de desenvolvimento. A senha curta da prévia é aceita somente fora de produção; cadastre uma credencial exclusiva antes da implantação. Login e recuperação de senha possuem limites de tentativas por IP.
+
+As capas são entregues pelo Rails com autorização: leitores acessam capas de notícias publicadas, e administradores também acessam rascunhos. O bucket deve continuar privado. Os uploads de capa usam o formulário do painel.
+
 O Dockerfile prepara as dependências e pré-compila os assets. Configure as variáveis na hospedagem: o `.env` de desenvolvimento não é carregado automaticamente em produção.
 
 | Variável | Finalidade |

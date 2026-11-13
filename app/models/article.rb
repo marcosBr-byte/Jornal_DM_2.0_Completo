@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
   CATEGORIES = [ "Educação", "Eventos", "Esportes", "Cultura", "Avisos" ].freeze
+  COVER_CONTENT_TYPES = %w[image/jpeg image/png image/webp].freeze
   BODY_TAGS = %w[div p br h2 h3 h4 strong b em i s del u ul ol li blockquote pre code a].freeze
   BODY_ATTRIBUTES = %w[href].freeze
   belongs_to :user
@@ -39,7 +40,7 @@ class Article < ApplicationRecord
   end
   def acceptable_cover
     return unless cover.attached?
-    errors.add(:cover, "deve ser JPEG, PNG ou WebP") unless cover.content_type.in?(%w[image/jpeg image/png image/webp])
+    errors.add(:cover, "deve ser JPEG, PNG ou WebP") unless cover.content_type.in?(COVER_CONTENT_TYPES)
     errors.add(:cover, "deve ter até 1,5 MB") if cover.byte_size > 1.5.megabytes
   end
 end

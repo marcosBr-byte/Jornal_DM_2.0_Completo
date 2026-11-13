@@ -1,6 +1,6 @@
 <% if article.cover.attached? %>
 <div class="h-[290px] bg-dm-pale max-sm:h-[200px] [&>img]:size-full [&>img]:object-cover">
-<%= image_tag article.cover, alt: article.title %>
+<%= image_tag cover_article_path(article), alt: article.title %>
 </div>
 <% end %>
 <div class="px-[45px] py-[30px] max-sm:px-5 [&>h1]:my-[15px] [&>h1]:font-display [&>h1]:text-[32px] [&>h1]:leading-[1.2] [&>h1]:font-extrabold [&>h1]:tracking-[-1px] max-sm:[&>h1]:text-[26px]">
